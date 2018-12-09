@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+  
+spring:
+  social:
+    twitter:
+      app-id: xtwUkzy20Oyzx0CsbUodyLXYS
+      app-secret: t8xMCIvmKC4q4cS5WPRkBnJMki1ld8MtG0OesesIgj6TDKKrXo
+  
