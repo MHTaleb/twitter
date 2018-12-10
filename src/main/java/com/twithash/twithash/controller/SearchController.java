@@ -30,7 +30,7 @@ public class SearchController {
 	@GetMapping(value="search/{tag}",produces=MediaType.TEXT_EVENT_STREAM_VALUE) 
 	public Flux<Tweet> getByTag(@PathVariable String tag) throws Exception{
 		System.out.println("begin");
-		
+		tag = "#" + tag;
 		System.out.println("end");
 		return localService.findByTag(tag).mergeWith(remoteService.findByTag(tag).doOnNext(tweet -> localService.save(tweet)));
 	}
