@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class TweetData {
+public class TweetID {
 
     @JsonProperty("text")
 	private  String text;
