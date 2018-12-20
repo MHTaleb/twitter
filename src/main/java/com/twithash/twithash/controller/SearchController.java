@@ -11,7 +11,6 @@ import com.twithash.twithash.service.TwitHashRemoteService;
 
 import lombok.AllArgsConstructor;
 import reactor.core.publisher.Flux;
-import twitter4j.TwitterException;
 
 /**
  * rest reactive controller because I m using webflux
@@ -32,6 +31,6 @@ public class SearchController {
 		System.out.println("begin");
 		tag = "#" + tag;
 		System.out.println("end");
-		return localService.findByTag(tag).mergeWith(remoteService.findByTag(tag).doOnNext(tweet -> localService.save(tweet)));
+		return localService.findByTag(tag).mergeWith(remoteService.findByTag(tag).doOnNext(tweet -> localService.save(tweet))).distinct();
 	}
 }

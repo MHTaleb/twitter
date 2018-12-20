@@ -19,10 +19,6 @@ public class TwitHashRemoteService {
 	private Configuration configuration;
 	
 	public Flux<Tweet> findByTag(String hashtag) throws TwitterException,Exception {
-		boolean mode = false;
-		if(mode)
-		return Flux.just(new Tweet("tag", new TweetID("text", "name"),"image","country","adress"));
-		
 		return Flux.create(sink -> {
 			TwitterStream twitterStream = new TwitterStreamFactory(configuration).getInstance();
 			twitterStream.onStatus(status -> sink.next(Tweet.fromStatus(status,hashtag)));

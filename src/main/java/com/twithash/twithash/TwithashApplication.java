@@ -17,40 +17,41 @@ import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
 @EnableReactiveMongoRepositories(basePackages = "com.twithash.twithash.repository")
-@SpringBootApplication(exclude = { MongoAutoConfiguration.class, MongoDataAutoConfiguration.class })
+@SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 @EnableConfigurationProperties(TwitterAPIConfigurationProperties.class)
 public class TwithashApplication extends AbstractReactiveMongoConfiguration {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TwithashApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TwithashApplication.class, args);
+    }
 
-	/**
-	 * Mongo db connection configuration
-	 */
-	@Override
-	public MongoClient reactiveMongoClient() {
-		// TODO Auto-generated method stub
-		return MongoClients.create();
-	}
+    /**
+     * Mongo db connection configuration
+     */
+    @Override
+    public MongoClient reactiveMongoClient() {
+        // TODO Auto-generated method stub
+        return MongoClients.create();
+    }
 
-	@Override
-	protected String getDatabaseName() {
-		// TODO Auto-generated method stub
-		return "twithash";
-	}
+    @Override
+    protected String getDatabaseName() {
+        // TODO Auto-generated method stub
+        return "twithash";
+    }
 
-	/**
-	 * oauth1 config for twitter
-	 * */
-	@Bean
-	public Configuration configuration(TwitterAPIConfigurationProperties properties) {
-		return new ConfigurationBuilder()
-				.setOAuthConsumerKey(properties.getConsumerKey())
-				.setOAuthConsumerSecret(properties.getConsumerSecret())
-				.setOAuthAccessToken(properties.getAccessToken())
-				.setOAuthAccessTokenSecret(properties.getAccessTokenSecret())
-				.build();
-	}
+    /**
+     * oauth1 config for twitter
+	 *
+     */
+    @Bean
+    public Configuration configuration(TwitterAPIConfigurationProperties properties) {
+        return new ConfigurationBuilder()
+                .setOAuthConsumerKey(properties.getConsumerKey())
+                .setOAuthConsumerSecret(properties.getConsumerSecret())
+                .setOAuthAccessToken(properties.getAccessToken())
+                .setOAuthAccessTokenSecret(properties.getAccessTokenSecret())
+                .build();
+    }
 
 }
