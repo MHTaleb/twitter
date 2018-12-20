@@ -16,16 +16,15 @@ import reactor.core.publisher.Flux;
 @AllArgsConstructor
 public class MongoServiceImp implements MongoService  {
 
-	private TweetMongoRepository tweetMongoRepo; 
+	private final TweetMongoRepository tweetMongoRepo; 
 	
+        @Override
 	public Flux<Tweet> findByTag(String tag) {
-		// TODO Auto-generated method stub
 		return tweetMongoRepo.findAllByTag(tag).doOnEach(System.out::println);
 	}
 
+        @Override
 	public void saveTweet( Tweet tweet) {
-		// TODO Auto-generated method stub
-		System.out.println("saving tweet "+tweet);
 		tweetMongoRepo.save(tweet).subscribe();
 	}
 

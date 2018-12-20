@@ -23,14 +23,19 @@ import reactor.core.publisher.Flux;
 @AllArgsConstructor
 public class SearchController {
 
-	private TwitHashLocalService localService;
-	private TwitHashRemoteService remoteService;
+	private final TwitHashLocalService localService;
+	private final TwitHashRemoteService remoteService;
 	
 	@GetMapping(value="search/{tag}",produces=MediaType.TEXT_EVENT_STREAM_VALUE) 
 	public Flux<Tweet> getByTag(@PathVariable String tag) throws Exception{
-		System.out.println("begin");
 		tag = "#" + tag;
-		System.out.println("end");
-		return localService.findByTag(tag).mergeWith(remoteService.findByTag(tag).doOnNext(tweet -> localService.save(tweet))).distinct();
+		return localService
+                        .findByTag(tag)
+                        .mergeWith(
+                                remoteService
+                                        .findByTag(tag)
+                                        .doOnNext(tweet -> localService.save(tweet))
+                        )
+                        .distinct();
 	}
 }

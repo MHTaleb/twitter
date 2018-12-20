@@ -25,24 +25,22 @@ public class TwithashApplication extends AbstractReactiveMongoConfiguration {
         SpringApplication.run(TwithashApplication.class, args);
     }
 
-    /**
-     * Mongo db connection configuration
-     */
+
     @Override
     public MongoClient reactiveMongoClient() {
-        // TODO Auto-generated method stub
         return MongoClients.create();
     }
 
     @Override
     protected String getDatabaseName() {
-        // TODO Auto-generated method stub
         return "twithash";
     }
 
     /**
      * oauth1 config for twitter
-	 *
+     *
+     * @param properties spring properties config object
+     * @return tweeter configuration
      */
     @Bean
     public Configuration configuration(TwitterAPIConfigurationProperties properties) {

@@ -3,7 +3,6 @@ package com.twithash.twithash.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,22 +24,20 @@ import twitter4j.Status;
 @Data
 public class Tweet {
 
-	@JsonProperty("tag")
 	private String tag;
 
 	@Id
-	@JsonProperty("tweetID")
 	private TweetID tweetID;
 
-	@JsonProperty("userImage")
 	private String userImage;
 
-	@JsonProperty("country")
 	private String country;
 
-	@JsonProperty("placeFullName")
 	private String placeFullName;
 
+        /**
+         * converting a status tweeter api response to a Tweet pojo object (entity)
+         */
 	public static Tweet fromStatus(Status status, String tag) {
 		String text = status.getText();
 		String name = status.getUser().getName();

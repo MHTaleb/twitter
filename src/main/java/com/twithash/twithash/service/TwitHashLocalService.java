@@ -13,16 +13,14 @@ import reactor.core.publisher.Flux;
 @AllArgsConstructor
 public class TwitHashLocalService {
 	
-	private TwitHashRemoteService hashRemoteService;
-	private MongoService mongoService;
+	private final TwitHashRemoteService hashRemoteService;
+	private final MongoService mongoService;
 	
 	public Flux<Tweet> findByTag(String tag) {
-
 		return mongoService.findByTag(tag);
 	}
 
 	public void save(Tweet tweet) {
-		// TODO Auto-generated method stub
 		mongoService.saveTweet(tweet);
 	}
 

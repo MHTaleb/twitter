@@ -3,8 +3,6 @@ package com.twithash.twithash.service;
 import org.springframework.stereotype.Service;
 
 import com.twithash.twithash.model.Tweet;
-import com.twithash.twithash.model.TweetID;
-
 import lombok.AllArgsConstructor;
 import reactor.core.publisher.Flux;
 import twitter4j.TwitterException;
@@ -16,7 +14,7 @@ import twitter4j.conf.Configuration;
 @AllArgsConstructor
 public class TwitHashRemoteService {
 
-	private Configuration configuration;
+	private final Configuration configuration;
 	
 	public Flux<Tweet> findByTag(String hashtag) throws TwitterException,Exception {
 		return Flux.create(sink -> {
